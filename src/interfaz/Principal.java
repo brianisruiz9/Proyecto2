@@ -38,14 +38,16 @@ public class Principal extends javax.swing.JFrame {
         cmdBorrar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtResultado = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        cmbOperacion = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("SUMA DE DOS NÚMEROS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
+        jLabel1.setText("OPERACIONES CON DOS NÚMEROS");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
         jLabel2.setText("Número uno:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
@@ -78,16 +80,22 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
 
         jLabel4.setText("Resultado:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
 
         txtResultado.setEditable(false);
-        jPanel1.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 60, -1));
+        jPanel1.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 60, -1));
+
+        jLabel5.setText("Operación:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+
+        cmbOperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Suma", "Resta", "Multiplicación", "División" }));
+        jPanel1.add(cmbOperacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 90, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,18 +110,29 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumeroUnoActionPerformed
 
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
- String num1,num2,res;
- int n1,n2,suma;
+ String res;
+ double n1,n2,resultado=0;
+ int op;
  
- num1=txtNumeroUno.getText();
- num2=txtNumeroDos.getText();
+ n1=Double.parseDouble(txtNumeroUno.getText());
+ n2=Double.parseDouble(txtNumeroDos.getText());
+ op=cmbOperacion.getSelectedIndex();
  
- n1=Integer.parseInt(num1);
- n2=Integer.parseInt(num2);
- 
- suma=n1+n2;
- 
- res=String.valueOf(suma);
+ switch(op){
+     case 0:
+         resultado=n1+n2;
+         break;
+     case 1:
+         resultado=n1-n2;
+         break;
+     case 2:
+         resultado=n1*n2;
+         break;
+     case 3:
+         resultado=n1/n2;
+         break;
+ }
+ res=String.valueOf(resultado);
  
  txtResultado.setText(res);
  
@@ -126,6 +145,7 @@ public class Principal extends javax.swing.JFrame {
         txtResultado.setText("");
         
         txtNumeroUno.requestFocusInWindow();
+        cmbOperacion.setSelectedIndex(0);
     }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
@@ -164,12 +184,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox cmbOperacion;
     private javax.swing.JButton cmdBorrar;
     private javax.swing.JButton cmdCalcular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtNumeroDos;
     private javax.swing.JTextField txtNumeroUno;
