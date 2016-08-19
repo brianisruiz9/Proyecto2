@@ -70,10 +70,17 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
 
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
 
         jLabel4.setText("Resultado:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
+
+        txtResultado.setEditable(false);
         jPanel1.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 60, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -84,7 +91,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -95,8 +102,31 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumeroUnoActionPerformed
 
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+ String num1,num2,res;
+ int n1,n2,suma;
+ 
+ num1=txtNumeroUno.getText();
+ num2=txtNumeroDos.getText();
+ 
+ n1=Integer.parseInt(num1);
+ n2=Integer.parseInt(num2);
+ 
+ suma=n1+n2;
+ 
+ res=String.valueOf(suma);
+ 
+ txtResultado.setText(res);
+ 
         // TODO add your handling code here:
     }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        txtNumeroUno.setText("");
+        txtNumeroDos.setText("");
+        txtResultado.setText("");
+        
+        txtNumeroUno.requestFocusInWindow();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
